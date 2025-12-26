@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Module 1: Getting Started - 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kalam:wght@700&family=Bangers&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(45deg, #FF006E, #8338EC, #FB5607, #FFBE0B, #06FFB4);
+            background-size: 600% 600%;
+            animation: graffitiBg 15s ease infinite;
+            font-family: 'Kalam', cursive;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="30" font-size="30">🎨</text></svg>'), auto;
+        }
+        
+        @keyframes graffitiBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: #000;
+            text-shadow: 
+                3px 3px 0 #FFBE0B,
+                6px 6px 0 #FB5607,
+                9px 9px 0 #FF006E,
+                12px 12px 20px rgba(0,0,0,0.5);
+            transform: rotate(-2deg);
+            animation: wobble 2s ease-in-out infinite;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-2deg) scale(1); }
+            50% { transform: rotate(2deg) scale(1.02); }
+        }
+        
+        h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 
+                3px 3px 0 #000,
+                5px 5px 10px rgba(0,0,0,0.5);
+            margin: 30px 0 15px;
+            letter-spacing: 2px;
+        }
+        
+        .intro-box {
+            background: rgba(255,255,255,0.95);
+            border: 8px solid #000;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 
+                0 10px 0 #000,
+                0 10px 30px rgba(0,0,0,0.3);
+            font-size: 1.4rem;
+            line-height: 1.8;
+        }
+        
+        .step-card {
+            background: rgba(255,255,255,0.98);
+            border: 6px solid #000;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 
+                8px 8px 0 rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 
+                12px 12px 0 rgba(0,0,0,0.3);
+        }
+        
+        .step-number {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: #FF006E;
+            text-shadow: 3px 3px 0 #000;
+            display: inline-block;
+            margin-right: 15px;
+            line-height: 1;
+        }
+        
+        .step-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            color: #000;
+            margin: 10px 0;
+        }
+        
+        .step-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .step-content strong {
+            color: #8338EC;
+            font-size: 1.3rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #FFBE0B;
+            border: 4px solid #000;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .checkbox-item:hover {
+            background: #FB5607;
+            transform: translateX(5px);
+        }
+        
+        .checkbox-item.completed {
+            background: #06FFB4;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+        
+        .checkbox {
+            width: 30px;
+            height: 30px;
+            border: 4px solid #000;
+            border-radius: 5px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: #fff;
+        }
+        
+        .timer-box {
+            background: linear-gradient(135deg, #FF006E, #FB5607);
+            color: #fff;
+            border: 5px solid #000;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 5px 5px 0 #000;
+        }
+        
+        .timer-display {
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
+            text-shadow: 3px 3px 0 #000;
+        }
+        
+        .progress-container {
+            background: rgba(0,0,0,0.3);
+            border: 5px solid #000;
+            border-radius: 50px;
+            height: 60px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #06FFB4, #FFBE0B, #FF006E);
+            border-radius: 50px;
+            width: 0%;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            color: #000;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #FF006E;
+            animation: fall 3s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .tip-bubble {
+            background: #8338EC;
+            color: #fff;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            box-shadow: 5px 5px 0 #000;
+        }
+        
+        .tip-bubble::before {
+            content: '💡 PRO TIP: ';
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .complete-button {
+            background: linear-gradient(135deg, #06FFB4, #FFBE0B);
+            border: 6px solid #000;
+            border-radius: 15px;
+            padding: 20px 40px;
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 #000;
+            transition: all 0.3s;
+            display: inline-block;
+            margin: 30px 0;
+        }
+        
+        .complete-button:hover {
+            transform: scale(1.05);
+            box-shadow: 8px 8px 0 #000;
+        }
+        
+        .sticker {
+            position: fixed;
+            font-size: 3rem;
+            animation: spin 5s infinite linear;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .fun-fact {
+            background: rgba(255,255,255,0.9);
+            border: 5px dashed #000;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .fun-fact::before {
+            content: '🤯 DID YOU KNOW? ';
+            font-weight: bold;
+            color: #FF006E;
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MODULE 1: GETTING STARTED! 🚀</h1>
+        
+        <div class="intro-box">
+            <strong>Welcome to TikTok Mastery 2025!</strong><br><br>
+            This is Module 1 where you'll set up your TikTok account and make your first video in under 15 minutes. No experience needed. Just follow the steps, click the boxes, and watch your progress bar fill up!<br><br>
+            <strong style="color: #FF006E;">⏱️ Total Time: 10-15 minutes max!</strong>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+
+        <!-- STEP 1: DOWNLOAD & SETUP -->
+        <div class="step-card">
+            <span class="step-number">1</span>
+            <div class="step-title">DOWNLOAD & SETUP (5 minutes)</div>
+            <div class="step-content">
+                <strong>Let's get TikTok on your phone!</strong><br><br>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Open App Store (iPhone) or Google Play (Android)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Search for "TikTok" and download the app (it's free!)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Open TikTok and tap "Sign up"
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Use your phone number (easier) or email
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Enter the code they text you
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Pick ANY username (you can change it later!)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Enter your birthday (must be 13+ to use TikTok)
+                </div>
+            </div>
+        </div>
+
+        <div class="fun-fact">
+            TikTok has over 1.7 BILLION users worldwide as of 2025! You're joining the biggest creative community on the planet.
+        </div>
+
+        <!-- STEP 2: MAKE YOUR PROFILE -->
+        <div class="step-card">
+            <span class="step-number">2</span>
+            <div class="step-title">MAKE YOUR PROFILE (3 minutes)</div>
+            <div class="step-content">
+                <strong>Let's make you look good!</strong><br><br>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap the "Profile" icon (bottom right - looks like a person)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap "Edit profile"
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Add a profile photo (can be anything - selfie, pet, logo)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Write a 1-sentence bio (example: "Just here to have fun 🎉" or "Learning TikTok in 2025 💪")
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Done! Your profile is ready!
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-bubble">
+            Your username can be changed once every 30 days, so don't stress about making it perfect right now!
+        </div>
+
+        <!-- STEP 3: YOUR FIRST VIDEO -->
+        <div class="step-card">
+            <span class="step-number">3</span>
+            <div class="step-title">YOUR FIRST VIDEO! (5 minutes)</div>
+            <div class="step-content">
+                <strong>The 10-Second Test - Let's DO THIS!</strong><br><br>
+                
+                <div class="timer-box">
+                    <div>This video will take:</div>
+                    <div class="timer-display">0:10</div>
+                    <div>Ten seconds. That's it!</div>
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap the + button (big button at the bottom center)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap the red record button
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Wave at the camera for 3 seconds (seriously, just wave!)
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap the red button again to stop recording
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap the checkmark (✓) in the bottom right
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Add text: "My first TikTok! 🎉"
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap "Next"
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Write caption: "Day 1 of learning TikTok!"
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    Tap "Post"
+                </div>
+                
+                <div class="checkbox-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    CELEBRATE! You're officially a TikToker! 🎉🎉🎉
+                </div>
+            </div>
+        </div>
+
+        <div class="fun-fact">
+            The most viral TikTok of 2024 was a simple 7-second video of a cat. Simple works!
+        </div>
+
+        <div class="tip-bubble">
+            Nobody's first video is perfect. The point is to START. You'll get better with every video you make!
+        </div>
+
+        <!-- HOMEWORK SECTION -->
+        <h2 style="font-family: 'Bangers', cursive; font-size: 2.5rem; color: #fff; text-shadow: 3px 3px 0 #000, 5px 5px 10px rgba(0,0,0,0.5); margin: 40px 0 20px;">📚 YOUR MODULE 1 HOMEWORK</h2>
+        
+        <div class="step-card" style="background: linear-gradient(135deg, rgba(255,190,11,0.3), rgba(251,86,7,0.3));">
+            <div style="font-size: 1.3rem; margin-bottom: 20px;">
+                <strong style="font-size: 1.6rem; color: #FF006E;">Complete these 3 assignments before moving to Module 2!</strong><br><br>
+                This homework makes sure you actually GET STARTED instead of just reading! 💪
+            </div>
+            
+            <div class="step-content">
+                <div style="background: #fff; border: 4px solid #000; border-radius: 15px; padding: 20px; margin: 15px 0;">
+                    <strong style="font-size: 1.4rem; color: #8338EC;">📱 ASSIGNMENT #1: Set Up Your Profile Completely</strong><br><br>
+                    <ul style="font-size: 1.2rem; line-height: 2;">
+                        <li>✅ Add a clear profile photo</li>
+                        <li>✅ Write a bio that says what you're about</li>
+                        <li>✅ Make sure your username makes sense</li>
+                        <li>✅ Add a link if you have one (optional)</li>
+                    </ul>
+                    Don't overthink it - you can change everything later!
+                </div>
+                
+                <div style="background: #fff; border: 4px solid #000; border-radius: 15px; padding: 20px; margin: 15px 0;">
+                    <strong style="font-size: 1.4rem; color: #8338EC;">🎥 ASSIGNMENT #2: Post Your First Video</strong><br><br>
+                    This is NON-NEGOTIABLE!<br><br>
+                    <ul style="font-size: 1.2rem; line-height: 2;">
+                        <li>Film something SIMPLE (wave, show your face, show your space)</li>
+                        <li>Keep it 5-10 seconds</li>
+                        <li>Add text: "Day 1 of my TikTok journey!"</li>
+                        <li>POST IT!</li>
+                    </ul>
+                    <strong style="color: #FF006E;">Your first video will NOT go viral. That's not the point!</strong><br>
+                    The point is to break the ice and prove to yourself you can do this! 💪
+                </div>
+                
+                <div style="background: #fff; border: 4px solid #000; border-radius: 15px; padding: 20px; margin: 15px 0;">
+                    <strong style="font-size: 1.4rem; color: #8338EC;">👀 ASSIGNMENT #3: Watch & Learn</strong><br><br>
+                    <ul style="font-size: 1.2rem; line-height: 2;">
+                        <li>Spend 15 minutes scrolling your For You Page</li>
+                        <li>Save 5 videos you like (tap the bookmark icon)</li>
+                        <li>Notice what makes you stop scrolling</li>
+                        <li>Pay attention to video length (most are under 30 seconds!)</li>
+                    </ul>
+                    You're not wasting time - you're doing research! 📚
+                </div>
+            </div>
+            
+            <div class="tip-bubble" style="margin-top: 20px;">
+                <strong>REMEMBER:</strong> Your first video doesn't need to be perfect. It just needs to EXIST. Every single viral creator started with video #1 that got 47 views. You're not behind - you're right on track! 🚀
+            </div>
+        </div>
+
+        <!-- COMPLETION -->
+        <div style="text-align: center; margin: 50px 0;">
+            <h2 style="font-family: 'Bangers', cursive; font-size: 2rem; color: #fff; text-shadow: 2px 2px 0 #000; margin-bottom: 20px;">✅ HOMEWORK COMPLETION CHECKLIST</h2>
+            
+            <div class="checkbox-item" onclick="toggleCheck(this)">
+                <div class="checkbox"></div>
+                ✅ My profile is 100% complete
+            </div>
+            
+            <div class="checkbox-item" onclick="toggleCheck(this)">
+                <div class="checkbox"></div>
+                ✅ I posted my first video (even if it's imperfect!)
+            </div>
+            
+            <div class="checkbox-item" onclick="toggleCheck(this)">
+                <div class="checkbox"></div>
+                ✅ I watched & saved 5 videos for inspiration
+            </div>
+            
+            <div class="checkbox-item" onclick="toggleCheck(this)">
+                <div class="checkbox"></div>
+                ✅ I'm ready for Module 2!
+            </div>
+            
+            <button class="complete-button" onclick="completeModule()">
+                🎉 I DID MY HOMEWORK! COMPLETE MODULE 1! 🎉
+            </button>
+        </div>
+
+        <div class="fun-fact">
+            <strong>NEXT UP: Module 2 - Making Fire Videos!</strong><br>
+            You'll learn the 3-Touch Method and 3 easy video formulas that actually work in 2025!
+        </div>
+    </div>
+
+    <script>
+        let totalTasks = document.querySelectorAll('.checkbox-item').length;
+        let completedTasks = 0;
+
+        function toggleCheck(element) {
+            if (!element.classList.contains('completed')) {
+                element.classList.add('completed');
+                element.querySelector('.checkbox').textContent = '✓';
+                completedTasks++;
+                
+                // Confetti!
+                createConfetti(element);
+                
+                // Update progress
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            let percentage = Math.round((completedTasks / totalTasks) * 100);
+            let progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+            
+            if (percentage === 100) {
+                setTimeout(() => {
+                    alert('🎉 AMAZING! You completed all the steps! Click the big button to finish Module 1!');
+                }, 500);
+            }
+        }
+
+        function createConfetti(element) {
+            const colors = ['#FF006E', '#8338EC', '#FB5607', '#FFBE0B', '#06FFB4'];
+            const rect = element.getBoundingClientRect();
+            
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = rect.left + rect.width/2 + 'px';
+                confetti.style.top = rect.top + 'px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `translateX(${Math.random() * 100 - 50}px)`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function completeModule() {
+            if (completedTasks === totalTasks) {
+                // Massive confetti explosion!
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const colors = ['#FF006E', '#8338EC', '#FB5607', '#FFBE0B', '#06FFB4'];
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        confetti.style.left = Math.random() * window.innerWidth + 'px';
+                        confetti.style.top = '0px';
+                        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        document.body.appendChild(confetti);
+                        setTimeout(() => confetti.remove(), 3000);
+                    }, i * 30);
+                }
+                
+                setTimeout(() => {
+                    alert('🎉🎉🎉 MODULE 1 COMPLETE! 🎉🎉🎉\n\nYou just:\n✓ Set up your TikTok account\n✓ Created your profile\n✓ Posted your FIRST video!\n\nYou\'re officially a TikToker! Ready for Module 2? 🚀');
+                }, 1000);
+            } else {
+                alert('⚠️ Finish all the checkboxes first! You got this! 💪');
+            }
+        }
+
+        // Add random stickers
+        window.addEventListener('load', () => {
+            const stickers = ['💥', '⭐', '🌈', '✨', '🎨', '🔥', '💯', '🚀'];
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const sticker = document.createElement('div');
+                    sticker.className = 'sticker';
+                    sticker.textContent = stickers[Math.floor(Math.random() * stickers.length)];
+                    sticker.style.left = Math.random() * 90 + '%';
+                    sticker.style.top = Math.random() * 90 + '%';
+                    document.body.appendChild(sticker);
+                }, i * 1000);
+            }
+        });
+    </script>
+</body>
+</html>
