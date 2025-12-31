@@ -74,3 +74,5 @@ Most creators jump straight to content creation without understanding the system
 - How to work WITH the algorithm instead of against it
 - Why understanding mechanics beats copying trends
 - How to make strategic decisions instead
+
+See ORIGIN.md for authorship, provenance, and licensing context.
